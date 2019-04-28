@@ -7,7 +7,7 @@
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/cmc1Button6"
+        android:id="@+id/add6Button"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginTop="8dp"
@@ -20,7 +20,7 @@
         app:layout_constraintTop_toTopOf="@+id/guideline13" />
 
     <Button
-        android:id="@+id/cmc1Button4"
+        android:id="@+id/add5Button"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginTop="8dp"
@@ -33,7 +33,7 @@
         app:layout_constraintTop_toTopOf="@+id/guideline12" />
 
     <Button
-        android:id="@+id/cmc1Button2"
+        android:id="@+id/add2Button"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginTop="8dp"
@@ -46,7 +46,7 @@
         app:layout_constraintTop_toTopOf="@+id/guideline9" />
 
     <Button
-        android:id="@+id/cmc1Button3"
+        android:id="@+id/add4Button"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginTop="8dp"
@@ -59,7 +59,7 @@
         app:layout_constraintTop_toTopOf="@+id/guideline11" />
 
     <Button
-        android:id="@+id/cmc1Button5"
+        android:id="@+id/add1Button"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginTop="8dp"
@@ -72,7 +72,7 @@
         app:layout_constraintTop_toTopOf="@+id/guideline8" />
 
     <Button
-        android:id="@+id/cmc1Button"
+        android:id="@+id/add3Button"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginTop="8dp"
@@ -275,13 +275,13 @@
 
     <TextView
         android:id="@+id/cmc6Label"
-        android:layout_width="15dp"
-        android:layout_height="wrap_content"
+        android:layout_width="23dp"
+        android:layout_height="23dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:text="6"
+        android:text="6+"
         app:layout_constraintBottom_toTopOf="@+id/guideline14"
         app:layout_constraintEnd_toStartOf="@+id/guideline5"
         app:layout_constraintStart_toStartOf="parent"
