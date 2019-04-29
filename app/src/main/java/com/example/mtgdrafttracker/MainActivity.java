@@ -3,8 +3,8 @@ package com.example.mtgdrafttracker;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 
-import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.HorizontalBarChart;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
@@ -12,7 +12,6 @@ import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 
 import java.util.ArrayList;
 
@@ -20,12 +19,13 @@ public class MainActivity extends AppCompatActivity {
 
     static ArrayList<BarEntry> entries;
     static BarEntry cmc1entry, cmc2entry, cmc3entry, cmc4entry, cmc5entry, cmc6entry;
+    static HorizontalBarChart cmcChart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        HorizontalBarChart cmcChart = findViewById(R.id.cmcChart);
+        cmcChart = findViewById(R.id.cmcChart);
         styleChart(cmcChart);
         initializeChart(cmcChart);
     }
@@ -60,16 +60,17 @@ public class MainActivity extends AppCompatActivity {
         chart.setAutoScaleMinMaxEnabled(true);
         Legend legend = chart.getLegend();
         legend.setEnabled(false);
+        chart.getAxisLeft().setAxisMaxValue(10f);
     }
 
     protected void initializeChart(HorizontalBarChart chart) {
         entries = new ArrayList<BarEntry>();
-        cmc1entry = new BarEntry(0f,0f);
-        cmc2entry = new BarEntry(1f,0f);
-        cmc3entry = new BarEntry(2f,0f);
-        cmc4entry = new BarEntry(3f,0f);
-        cmc5entry = new BarEntry(4f,0f);
-        cmc6entry = new BarEntry(5f,0f);
+        cmc1entry = new BarEntry(5f,0f);
+        cmc2entry = new BarEntry(4f,0f);
+        cmc3entry = new BarEntry(3f,0f);
+        cmc4entry = new BarEntry(2f,0f);
+        cmc5entry = new BarEntry(1f,0f);
+        cmc6entry = new BarEntry(0f,0f);
         entries.add(cmc6entry);
         entries.add(cmc5entry);
         entries.add(cmc4entry);
@@ -81,6 +82,42 @@ public class MainActivity extends AppCompatActivity {
         BarData data = new BarData(set);
         data.setBarWidth(0.75f);
         chart.setData(data);
+    }
+
+    public void handleAdd1Button(View view) {
+        float y = cmc1entry.getY() + 1f;
+        cmc1entry.setY(y);
+        cmcChart.invalidate();
+    }
+
+    public void handleAdd2Button(View view) {
+        float y = cmc2entry.getY() + 1f;
+        cmc2entry.setY(y);
+        cmcChart.invalidate();
+    }
+
+    public void handleAdd3Button(View view) {
+        float y = cmc3entry.getY() + 1f;
+        cmc3entry.setY(y);
+        cmcChart.invalidate();
+    }
+
+    public void handleAdd4Button(View view) {
+        float y = cmc4entry.getY() + 1f;
+        cmc4entry.setY(y);
+        cmcChart.invalidate();
+    }
+
+    public void handleAdd5Button(View view) {
+        float y = cmc5entry.getY() + 1f;
+        cmc5entry.setY(y);
+        cmcChart.invalidate();
+    }
+
+    public void handleAdd6Button(View view) {
+        float y = cmc6entry.getY() + 1f;
+        cmc6entry.setY(y);
+        cmcChart.invalidate();
     }
 
 }
