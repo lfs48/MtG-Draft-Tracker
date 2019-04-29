@@ -120,4 +120,14 @@ public class MainActivity extends AppCompatActivity {
         cmcChart.invalidate();
     }
 
+    public void handleResetButton(View view) {
+        cmc1entry.setY(0);
+        cmc2entry.setY(0);
+        cmc3entry.setY(0);
+        cmc4entry.setY(0);
+        cmc5entry.setY(0);
+        cmc6entry.setY(0);
+        cmcChart.invalidate();
+    }
+
 }
