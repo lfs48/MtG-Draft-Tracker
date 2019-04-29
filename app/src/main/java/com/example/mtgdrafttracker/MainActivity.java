@@ -18,6 +18,9 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
+    static ArrayList<BarEntry> entries;
+    static BarEntry cmc1entry, cmc2entry, cmc3entry, cmc4entry, cmc5entry, cmc6entry;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,13 +63,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     protected void initializeChart(HorizontalBarChart chart) {
-        ArrayList<BarEntry> entries = new ArrayList<BarEntry>();
-        entries.add(new BarEntry(0f,0f));
-        entries.add(new BarEntry(1f,0f));
-        entries.add(new BarEntry(2f,0f));
-        entries.add(new BarEntry(3f,0f));
-        entries.add(new BarEntry(4f,0f));
-        entries.add(new BarEntry(5f,0f));
+        entries = new ArrayList<BarEntry>();
+        cmc1entry = new BarEntry(0f,0f);
+        cmc2entry = new BarEntry(1f,0f);
+        cmc3entry = new BarEntry(2f,0f);
+        cmc4entry = new BarEntry(3f,0f);
+        cmc5entry = new BarEntry(4f,0f);
+        cmc6entry = new BarEntry(5f,0f);
+        entries.add(cmc6entry);
+        entries.add(cmc5entry);
+        entries.add(cmc4entry);
+        entries.add(cmc3entry);
+        entries.add(cmc2entry);
+        entries.add(cmc1entry);
 
         BarDataSet set = new BarDataSet(entries, "BarDataSet");
         BarData data = new BarData(set);
