@@ -14,11 +14,13 @@ import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 
 import java.util.ArrayList;
+import java.util.Stack;
 
 public class MainActivity extends AppCompatActivity {
 
     static ArrayList<BarEntry> entries;
-    static BarEntry cmc1entry, cmc2entry, cmc3entry, cmc4entry, cmc5entry, cmc6entry;
+    static BarEntry cmc1entry, cmc2entry, cmc3entry, cmc4entry, cmc5entry, cmc6entry, last;
+    static Stack<BarEntry> history;
     static HorizontalBarChart cmcChart;
 
     @Override
@@ -28,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
         cmcChart = findViewById(R.id.cmcChart);
         styleChart(cmcChart);
         initializeChart(cmcChart);
+        history = new Stack<BarEntry>();
     }
 
     protected void styleChart(HorizontalBarChart chart) {
@@ -88,36 +91,42 @@ public class MainActivity extends AppCompatActivity {
         float y = cmc1entry.getY() + 1f;
         cmc1entry.setY(y);
         cmcChart.invalidate();
+        history.push(cmc1entry);
     }
 
     public void handleAdd2Button(View view) {
         float y = cmc2entry.getY() + 1f;
         cmc2entry.setY(y);
         cmcChart.invalidate();
+        history.push(cmc2entry);
     }
 
     public void handleAdd3Button(View view) {
         float y = cmc3entry.getY() + 1f;
         cmc3entry.setY(y);
         cmcChart.invalidate();
+        history.push(cmc3entry);
     }
 
     public void handleAdd4Button(View view) {
         float y = cmc4entry.getY() + 1f;
         cmc4entry.setY(y);
         cmcChart.invalidate();
+        history.push(cmc4entry);
     }
 
     public void handleAdd5Button(View view) {
         float y = cmc5entry.getY() + 1f;
         cmc5entry.setY(y);
         cmcChart.invalidate();
+        history.push(cmc5entry);
     }
 
     public void handleAdd6Button(View view) {
         float y = cmc6entry.getY() + 1f;
         cmc6entry.setY(y);
         cmcChart.invalidate();
+        history.push(cmc6entry);
     }
 
     public void handleResetButton(View view) {
@@ -128,6 +137,15 @@ public class MainActivity extends AppCompatActivity {
         cmc5entry.setY(0);
         cmc6entry.setY(0);
         cmcChart.invalidate();
+    }
+
+    public void handleUndoButton(View view) {
+        if (!history.empty()) {
+            BarEntry last = history.pop();
+            float y = Math.max(0f, last.getY() - 1f);
+            last.setY(y);
+            cmcChart.invalidate();
+        }
     }
 
 }
