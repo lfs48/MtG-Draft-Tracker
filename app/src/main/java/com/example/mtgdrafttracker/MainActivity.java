@@ -71,11 +71,11 @@ public class MainActivity extends AppCompatActivity {
     protected void initializeChart(HorizontalBarChart chart) {
         entries = new ArrayList<BarEntry>();
         cmc1entry = new BarEntry(5f, new float[] {0f, 0f, 0f, 0f, 0f} );
-        cmc2entry = new BarEntry(4f,0f);
-        cmc3entry = new BarEntry(3f,0f);
-        cmc4entry = new BarEntry(2f,0f);
-        cmc5entry = new BarEntry(1f,0f);
-        cmc6entry = new BarEntry(0f,0f);
+        cmc2entry = new BarEntry(4f, new float[] {0f, 0f, 0f, 0f, 0f} );
+        cmc3entry = new BarEntry(3f, new float[] {0f, 0f, 0f, 0f, 0f} );
+        cmc4entry = new BarEntry(2f, new float[] {0f, 0f, 0f, 0f, 0f} );
+        cmc5entry = new BarEntry(1f, new float[] {0f, 0f, 0f, 0f, 0f} );
+        cmc6entry = new BarEntry(0f, new float[] {0f, 0f, 0f, 0f, 0f} );
         entries.add(cmc6entry);
         entries.add(cmc5entry);
         entries.add(cmc4entry);
@@ -91,47 +91,36 @@ public class MainActivity extends AppCompatActivity {
         chart.setData(data);
     }
 
-    public void handleAdd1Button(View view) {
-        float[] y = cmc1entry.getYVals();
+    protected void addToChart(BarEntry entry) {
+        float[] y = entry.getYVals();
         y[colorIndex] = y[colorIndex] +1;
-        cmc1entry.setVals(y);
+        entry.setVals(y);
         cmcChart.invalidate();
-        history.push(cmc1entry);
+        history.push(entry);
+    }
+
+    public void handleAdd1Button(View view) {
+        addToChart(cmc1entry);
     }
 
     public void handleAdd2Button(View view) {
-        float y = cmc2entry.getY() + 1f;
-        cmc2entry.setY(y);
-        cmcChart.invalidate();
-        history.push(cmc2entry);
+        addToChart(cmc2entry);
     }
 
     public void handleAdd3Button(View view) {
-        float y = cmc3entry.getY() + 1f;
-        cmc3entry.setY(y);
-        cmcChart.invalidate();
-        history.push(cmc3entry);
+        addToChart(cmc3entry);
     }
 
     public void handleAdd4Button(View view) {
-        float y = cmc4entry.getY() + 1f;
-        cmc4entry.setY(y);
-        cmcChart.invalidate();
-        history.push(cmc4entry);
+        addToChart(cmc4entry);
     }
 
     public void handleAdd5Button(View view) {
-        float y = cmc5entry.getY() + 1f;
-        cmc5entry.setY(y);
-        cmcChart.invalidate();
-        history.push(cmc5entry);
+        addToChart(cmc5entry);
     }
 
     public void handleAdd6Button(View view) {
-        float y = cmc6entry.getY() + 1f;
-        cmc6entry.setY(y);
-        cmcChart.invalidate();
-        history.push(cmc6entry);
+        addToChart(cmc6entry);
     }
 
     public void handleResetButton(View view) {
