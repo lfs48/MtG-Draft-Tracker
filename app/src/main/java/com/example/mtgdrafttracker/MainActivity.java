@@ -124,12 +124,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void handleResetButton(View view) {
-        cmc1entry.setY(0);
-        cmc2entry.setY(0);
-        cmc3entry.setY(0);
-        cmc4entry.setY(0);
-        cmc5entry.setY(0);
-        cmc6entry.setY(0);
+        cmc1entry.setVals(new float[] {0f, 0f, 0f, 0f, 0f});
+        cmc2entry.setVals(new float[] {0f, 0f, 0f, 0f, 0f});
+        cmc3entry.setVals(new float[] {0f, 0f, 0f, 0f, 0f});
+        cmc4entry.setVals(new float[] {0f, 0f, 0f, 0f, 0f});
+        cmc5entry.setVals(new float[] {0f, 0f, 0f, 0f, 0f});
+        cmc6entry.setVals(new float[] {0f, 0f, 0f, 0f, 0f});
         cmcChart.invalidate();
     }
 
