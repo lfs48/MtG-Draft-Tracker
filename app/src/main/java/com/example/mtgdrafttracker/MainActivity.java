@@ -1,5 +1,6 @@
 package com.example.mtgdrafttracker;
 
+import android.graphics.Color;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -22,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     static BarEntry cmc1entry, cmc2entry, cmc3entry, cmc4entry, cmc5entry, cmc6entry, last;
     static Stack<BarEntry> history;
     static HorizontalBarChart cmcChart;
+    static int colorIndex = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
 
     protected void initializeChart(HorizontalBarChart chart) {
         entries = new ArrayList<BarEntry>();
-        cmc1entry = new BarEntry(5f,0f);
+        cmc1entry = new BarEntry(5f, new float[] {0f, 0f, 0f, 0f, 0f} );
         cmc2entry = new BarEntry(4f,0f);
         cmc3entry = new BarEntry(3f,0f);
         cmc4entry = new BarEntry(2f,0f);
@@ -82,14 +84,17 @@ public class MainActivity extends AppCompatActivity {
         entries.add(cmc1entry);
 
         BarDataSet set = new BarDataSet(entries, "BarDataSet");
+        int[] colorClasses = new int[] {Color.WHITE, Color.BLUE, Color.BLACK, Color.RED, Color.GREEN};
+        set.setColors(colorClasses);
         BarData data = new BarData(set);
         data.setBarWidth(0.75f);
         chart.setData(data);
     }
 
     public void handleAdd1Button(View view) {
-        float y = cmc1entry.getY() + 1f;
-        cmc1entry.setY(y);
+        float[] y = cmc1entry.getYVals();
+        y[colorIndex] = y[colorIndex] +1;
+        cmc1entry.setVals(y);
         cmcChart.invalidate();
         history.push(cmc1entry);
     }
@@ -146,6 +151,26 @@ public class MainActivity extends AppCompatActivity {
             last.setY(y);
             cmcChart.invalidate();
         }
+    }
+
+    public void handleWhiteButton(View view) {
+        colorIndex = 0;
+    }
+
+    public void handleBlueButton(View view) {
+        colorIndex = 1;
+    }
+
+    public void handleBlackButton(View view) {
+        colorIndex = 2;
+    }
+
+    public void handleRedButton(View view) {
+        colorIndex = 3;
+    }
+
+    public void handleGreenButton(View view) {
+        colorIndex = 4;
     }
 
 }
