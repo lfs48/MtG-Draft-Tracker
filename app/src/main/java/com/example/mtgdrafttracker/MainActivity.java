@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
     static ArrayList<BarEntry> entries;
     static BarEntry cmc1entry, cmc2entry, cmc3entry, cmc4entry, cmc5entry, cmc6entry, last;
-    static Stack<BarEntry> history;
+    static Stack<int[]> history;
     static HorizontalBarChart cmcChart;
     static int colorIndex = 0;
 
@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         cmcChart = findViewById(R.id.cmcChart);
         styleChart(cmcChart);
         initializeChart(cmcChart);
-        history = new Stack<BarEntry>();
+        history = new Stack<int[]>();
     }
 
     protected void styleChart(HorizontalBarChart chart) {
@@ -76,12 +76,13 @@ public class MainActivity extends AppCompatActivity {
         cmc4entry = new BarEntry(2f, new float[] {0f, 0f, 0f, 0f, 0f} );
         cmc5entry = new BarEntry(1f, new float[] {0f, 0f, 0f, 0f, 0f} );
         cmc6entry = new BarEntry(0f, new float[] {0f, 0f, 0f, 0f, 0f} );
-        entries.add(cmc6entry);
-        entries.add(cmc5entry);
-        entries.add(cmc4entry);
-        entries.add(cmc3entry);
-        entries.add(cmc2entry);
+
         entries.add(cmc1entry);
+        entries.add(cmc2entry);
+        entries.add(cmc3entry);
+        entries.add(cmc4entry);
+        entries.add(cmc5entry);
+        entries.add(cmc6entry);
 
         BarDataSet set = new BarDataSet(entries, "BarDataSet");
         int[] colorClasses = new int[] {Color.WHITE, Color.BLUE, Color.BLACK, Color.RED, Color.GREEN};
@@ -91,36 +92,37 @@ public class MainActivity extends AppCompatActivity {
         chart.setData(data);
     }
 
-    protected void addToChart(BarEntry entry) {
+    protected void addToChart(int index) {
+        BarEntry entry = entries.get(index);
         float[] y = entry.getYVals();
         y[colorIndex] = y[colorIndex] +1;
         entry.setVals(y);
         cmcChart.invalidate();
-        history.push(entry);
+        history.push(new int[] {index, colorIndex});
     }
 
     public void handleAdd1Button(View view) {
-        addToChart(cmc1entry);
+        addToChart(0);
     }
 
     public void handleAdd2Button(View view) {
-        addToChart(cmc2entry);
+        addToChart(1);
     }
 
     public void handleAdd3Button(View view) {
-        addToChart(cmc3entry);
+        addToChart(2);
     }
 
     public void handleAdd4Button(View view) {
-        addToChart(cmc4entry);
+        addToChart(3);
     }
 
     public void handleAdd5Button(View view) {
-        addToChart(cmc5entry);
+        addToChart(4);
     }
 
     public void handleAdd6Button(View view) {
-        addToChart(cmc6entry);
+        addToChart(5);
     }
 
     public void handleResetButton(View view) {
@@ -135,9 +137,13 @@ public class MainActivity extends AppCompatActivity {
 
     public void handleUndoButton(View view) {
         if (!history.empty()) {
-            BarEntry last = history.pop();
-            float y = Math.max(0f, last.getY() - 1f);
-            last.setY(y);
+            int[] last = history.pop();
+            BarEntry lastEntry = entries.get(last[0]);
+            int lastColorIndex = last[1];
+
+            float[] y = lastEntry.getYVals();
+            y[lastColorIndex] = y[lastColorIndex] - 1;
+            lastEntry.setVals(y);
             cmcChart.invalidate();
         }
     }
