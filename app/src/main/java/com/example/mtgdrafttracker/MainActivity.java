@@ -1,10 +1,13 @@
 package com.example.mtgdrafttracker;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.HorizontalBarChart;
 import com.github.mikephil.charting.components.Legend;
@@ -136,6 +139,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void handleResetButton(View view) {
+        new AlertDialog.Builder(this)
+                .setTitle("Reset?")
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        reset();
+                    }})
+                .setNegativeButton(android.R.string.no, null).show();
+    }
+
+    protected void reset() {
         cmc1entry.setVals(new float[] {0f, 0f, 0f, 0f, 0f});
         cmc2entry.setVals(new float[] {0f, 0f, 0f, 0f, 0f});
         cmc3entry.setVals(new float[] {0f, 0f, 0f, 0f, 0f});
