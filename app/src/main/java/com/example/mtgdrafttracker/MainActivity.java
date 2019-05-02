@@ -15,6 +15,8 @@ import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Stack;
 
 public class MainActivity extends AppCompatActivity {
@@ -63,9 +65,9 @@ public class MainActivity extends AppCompatActivity {
 
         chart.setPinchZoom(false);
         chart.setAutoScaleMinMaxEnabled(true);
-        Legend legend = chart.getLegend();
-        legend.setEnabled(false);
         chart.getAxisLeft().setAxisMaxValue(10f);
+
+        chart.setDrawValueAboveBar(false);
     }
 
     protected void initializeChart(HorizontalBarChart chart) {
@@ -85,9 +87,17 @@ public class MainActivity extends AppCompatActivity {
         entries.add(cmc6entry);
 
         BarDataSet set = new BarDataSet(entries, "BarDataSet");
-        int[] colorClasses = new int[] {Color.WHITE, Color.BLUE, Color.BLACK, Color.RED, Color.GREEN};
+        set.setValueTextSize(20);
+        set.setValueTextColor(Color.GRAY);
+        int mtgWhite = Color.rgb(255,252,214);
+        int mtgBlue = Color.rgb(14, 104, 171);
+        int mtgBlack = Color.rgb(21, 11, 0);
+        int mtgRed = Color.rgb(211, 32, 42);
+        int mtgGreen = Color.rgb(0, 115, 62);
+        int[] colorClasses = new int[] {mtgWhite, mtgBlue, mtgBlack, mtgRed, mtgGreen};
         set.setColors(colorClasses);
         BarData data = new BarData(set);
+        data.setValueFormatter(new CmcChartValueFormatter(0));
         data.setBarWidth(0.75f);
         chart.setData(data);
     }
