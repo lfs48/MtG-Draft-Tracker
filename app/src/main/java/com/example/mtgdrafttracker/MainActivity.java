@@ -107,11 +107,13 @@ public class MainActivity extends AppCompatActivity {
 
     protected void addToChart(int index) {
         BarEntry entry = entries.get(index);
-        float[] y = entry.getYVals();
-        y[colorIndex] = y[colorIndex] +1;
-        entry.setVals(y);
-        cmcChart.invalidate();
-        history.push(new int[] {index, colorIndex});
+        if (entry.getY() < 10) {
+            float[] y = entry.getYVals();
+            y[colorIndex] = y[colorIndex] + 1;
+            entry.setVals(y);
+            cmcChart.invalidate();
+            history.push(new int[]{index, colorIndex});
+        }
     }
 
     public void handleAdd1Button(View view) {
