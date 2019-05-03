@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     static Stack<int[]> history;
     static HorizontalBarChart cmcChart;
     static int colorIndex = 0;
+    static float max = 10f;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
 
         chart.setPinchZoom(false);
         chart.setAutoScaleMinMaxEnabled(true);
-        chart.getAxisLeft().setAxisMaxValue(10f);
+        chart.getAxisLeft().setAxisMaxValue(max);
 
         chart.setDrawValueAboveBar(false);
     }
@@ -107,13 +108,20 @@ public class MainActivity extends AppCompatActivity {
 
     protected void addToChart(int index) {
         BarEntry entry = entries.get(index);
-        if (entry.getY() < 10) {
-            float[] y = entry.getYVals();
-            y[colorIndex] = y[colorIndex] + 1;
-            entry.setVals(y);
-            cmcChart.invalidate();
-            history.push(new int[]{index, colorIndex});
+        if (entry.getY() == max - 1) {
+            updateMax();
         }
+        float[] y = entry.getYVals();
+        y[colorIndex] = y[colorIndex] + 1;
+        entry.setVals(y);
+        cmcChart.invalidate();
+        history.push(new int[]{index, colorIndex});
+    }
+
+    protected void updateMax() {
+        max = max * 2;
+        cmcChart.getAxisLeft().setAxisMaxValue(max);
+        cmcChart.invalidate();
     }
 
     public void handleAdd1Button(View view) {
