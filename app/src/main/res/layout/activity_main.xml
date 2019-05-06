@@ -104,9 +104,9 @@
         app:layout_constraintStart_toStartOf="@+id/guideline5"
         app:layout_constraintTop_toTopOf="@+id/guideline10" />
 
-    <ImageButton
+    <Button
         android:id="@+id/whiteButton"
-        android:layout_width="40dp"
+        android:layout_width="70dp"
         android:layout_height="40dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
@@ -114,6 +114,7 @@
         android:backgroundTint="@color/mtgWhite"
         android:onClick="handleWhiteButton"
         android:src="@mipmap/white_symbol"
+        android:text="White"
         app:layout_constraintBottom_toTopOf="@+id/guideline16"
         app:layout_constraintEnd_toStartOf="@+id/guideline19"
         app:layout_constraintStart_toStartOf="@+id/guideline6"
@@ -129,6 +130,7 @@
         android:layout_marginBottom="8dp"
         android:backgroundTint="@color/mtgBlue"
         android:onClick="handleBlueButton"
+        android:src="@mipmap/blue_symbol"
         android:text="Blue"
         app:layout_constraintBottom_toTopOf="@+id/guideline17"
         app:layout_constraintEnd_toStartOf="@+id/guideline20"
