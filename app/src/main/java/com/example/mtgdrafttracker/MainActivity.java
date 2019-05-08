@@ -166,6 +166,8 @@ public class MainActivity extends AppCompatActivity {
         cmc4entry.setVals(new float[] {0f, 0f, 0f, 0f, 0f});
         cmc5entry.setVals(new float[] {0f, 0f, 0f, 0f, 0f});
         cmc6entry.setVals(new float[] {0f, 0f, 0f, 0f, 0f});
+        max = 10;
+        cmcChart.getAxisLeft().setAxisMaxValue(max);
         cmcChart.invalidate();
     }
 
