@@ -204,4 +204,8 @@ public class MainActivity extends AppCompatActivity {
         colorIndex = 4;
     }
 
+    public void handleSuggestion(View view) {
+
+    }
+
 }
